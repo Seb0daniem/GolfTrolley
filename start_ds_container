@@ -1,0 +1,9 @@
+docker run -it --rm \
+    --network=host --runtime nvidia --gpus all --privileged \
+    --device /dev/video0 \
+    -w /opt/nvidia/deepstream/deepstream-7.1/samples/configs/deepstream-app \
+    -v /tmp/.X11-unix/:/tmp/.X11-unix \
+    -v /home/daniel/GolfTrolley:/GolfTrolley \
+    nvcr.io/nvidia/deepstream:7.1-triton-multiarch \
+    bash -c "bash /opt/nvidia/deepstream/deepstream-7.1/user_additional_install.sh && bash /GolfTrolley/ds_setup.sh && exec bash"
+
