@@ -62,23 +62,17 @@ output-file=/GolfTrolley/recorded/out.mp4
 source-id=0
 
 [sink2]
-enable=0
-#Type - 1=FakeSink 2=EglSink 3=File 4=RTSPStreaming 5=nvdrmvideosink
-type=4
-#1=h264 2=h265
-codec=1
-#encoder type 0=Hardware 1=Software
-enc-type=0
-sync=0
-bitrate=4000000
-#H264 Profile - 0=Baseline 2=Main 4=High
-#H265 Profile - 0=Main 1=Main10
-# set profile only for hw encoder, sw encoder selects profile based on sw-preset
-profile=0
-# set below properties in case of RTSPStreaming
-rtsp-port=8554
-udp-port=5400
+enable=1
+# 6=MsgBroker
+type=6
+msg-conv-config=mqtt_config.txt
+msg-conv-payload-type=1
+msg-conv-msg2p-new-api=1
+msg-conv-frame-interval=30
 
+msg-broker-proto-lib=/opt/nvidia/deepstream/deepstream/lib/libnvds_mqtt_proto.so
+msg-broker-conn-str=127.0.0.1;1883;deepstream_client
+topic=deepstream/metadata
 
 [osd]
 enable=1
